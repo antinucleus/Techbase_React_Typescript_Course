@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import DataGrid from "./components/DataGrid";
 
-function App() {
+
+export default function App() {
+  const users = [
+    { id: 1, name: "John", age: 55 },
+    { id: 2, name: "Mitchel", age: 23 },
+    { id: 3, name: "Mike", age: 50 },
+  ];
+
+  const orders = [
+    { id: 1, quantity: 5, amount: 75 },
+    { id: 2, quantity: 2, amount: 20 },
+    { id: 3, quantity: 1, amount: 40 },
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <DataGrid items={users} />
+      <DataGrid items={orders} />
+    </>
   );
 }
-
-export default App;
