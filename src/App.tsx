@@ -1,25 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
+// Don't use enums but use union types istead
+
+type CheckoutStep = "Details" | "Shipping" | "Payment"
+
+// enum CheckoutStep {
+//   Details = "Details",
+//   Shipping = "Shipping",
+//   Payment = "Payment"
+// }
+
 function App() {
+  const [checkoutStep, setCheckoutStep] = useState<CheckoutStep>("Details")
+  // const [checkoutStep, setCheckoutStep] = useState<CheckoutStep>(CheckoutStep.Details)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {/* {checkoutStep === CheckoutStep.Details && */}
+      {checkoutStep === "Details" &&
+        <>
+          <h1>Details</h1>
+          <button type='button' onClick={() => setCheckoutStep("Shipping")} >Next</button>
+          {/* <button type='button' onClick={() => setCheckoutStep(CheckoutStep.Shipping)} >Next</button> */}
+
+        </>
+      }
+
+      {/* {checkoutStep === CheckoutStep.Shipping && */}
+      {checkoutStep === "Shipping" &&
+        <>
+          <h1>Shipping</h1>
+          <button type='button' onClick={() => setCheckoutStep("Payment")} >Next </button>
+          {/* <button type='button' onClick={() => setCheckoutStep(CheckoutStep.Payment)} >Next </button> */}
+        </>
+      }
+
+      {/* {checkoutStep === CheckoutStep.Payment && */}
+      {checkoutStep === "Payment" &&
+        <>
+          <h1>Payment</h1>
+        </>
+      }
+    </>
   );
 }
 
