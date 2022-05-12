@@ -1,25 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
+const defaultFormData = {
+  title: "",
+  body: ""
+}
 function App() {
+  const [formData, setFormData] = useState(defaultFormData)
+  const { title, body } = formData
+
+  const onChange = ( e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.id]: e.target.value
+    }))
+  }
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    console.log(formData)
+
+    setFormData(defaultFormData)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>Form</h1>
+      <p>Create a post</p>
+
+      <form onSubmit={onSubmit} >
+        <label htmlFor='title'>Title</label>
+        <br />
+        <input type="text" id="title" value={title} onChange={onChange} />
+        <br />
+        <br />
+        <label htmlFor='body'>Body</label>
+        <br />
+        <input type="text" id="body" value={body} onChange={onChange} />
+        <br />
+        <br />
+        <button type='submit' >Upload post</button>
+      </form>
+    </>
   );
 }
 
