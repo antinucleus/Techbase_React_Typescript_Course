@@ -9,7 +9,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <App headerText='This is a header text' extraText='some extra text' />
   </React.StrictMode>
 );
 
